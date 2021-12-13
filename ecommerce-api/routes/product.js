@@ -1,14 +1,15 @@
-const Product = require("../models/Product");
-const {
+// const Product = require("../models/Product");
+import Product from "../models/Product.js";
+import {
   verifyToken,
   verifyTokenAndAuthorization,
   verifyTokenAndAdmin,
-} = require("./verifyToken");
+} from "./verifyToken.js";
 
-const router = require("express").Router();
+import express from "express";
+const router = express.Router();
 
 //CREATE
-
 router.post("/", verifyTokenAndAdmin, async (req, res) => {
   const newProduct = new Product(req.body);
 
@@ -81,4 +82,4 @@ router.get("/", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

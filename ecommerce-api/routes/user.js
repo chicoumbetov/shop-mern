@@ -1,11 +1,13 @@
-const User = require("../models/User");
-const {
-  verifyToken,
-  verifyTokenAndAuthorization,
-  verifyTokenAndAdmin,
-} = require("./verifyToken");
+// const User = require("../models/User");
+import User from "../models/user.js"
 
-const router = require("express").Router();
+import {
+  verifyToken,
+  verifyTokenAndAuthorization, verifyTokenAndAdmin,
+} from "./verifyToken.js";
+
+import express from "express";
+const router = express.Router();
 
 //UPDATE
 router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
@@ -91,4 +93,5 @@ router.get("/stats", verifyTokenAndAdmin, async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
+// module.exports = router;

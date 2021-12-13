@@ -1,14 +1,14 @@
-const Cart = require("../models/Cart");
-const {
+import Cart from "../models/Cart.js";
+import {
   verifyToken,
   verifyTokenAndAuthorization,
   verifyTokenAndAdmin,
-} = require("./verifyToken");
+} from "./verifyToken.js";
 
-const router = require("express").Router();
+import express from "express";
+const router = express.Router();
 
 //CREATE
-
 router.post("/", verifyToken, async (req, res) => {
   const newCart = new Cart(req.body);
 
@@ -57,7 +57,6 @@ router.get("/find/:userId", verifyTokenAndAuthorization, async (req, res) => {
 });
 
 // //GET ALL
-
 router.get("/", verifyTokenAndAdmin, async (req, res) => {
   try {
     const carts = await Cart.find();
@@ -67,4 +66,4 @@ router.get("/", verifyTokenAndAdmin, async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
